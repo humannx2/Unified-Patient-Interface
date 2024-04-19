@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %} - Homepage{% endblock title %}
+{% block body %} 
+  <style>
+    body{
+    background: rgb(192,192,192);
+    /* background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+    font-family: 'Times New Roman', Times, serif;
+    .list-group-item {
+      background: rgb(192, 192, 192);
+      color: black; /* Set text color to black for better visibility */
+    }
+  }
+  </style>
+  <header class="container d-flex flex-column align-items-center py-3">
+    <h1 class="display-4 fw-bold">Universal Diagnosis History</h1>
+    <p class="lead">Manage your medical records and improve care coordination.</p>
+  </header>
+  <body>  
+    <section class="container hero mt-5">
+      <div class="row align-items-center">
+        <div class="col-md-4 order-md-2">
+          <img src=static/logo.png alt="Diagnosis History Illustration" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6 order-md-1">
+          <p class="lead">Empowering Patients and Streamlining Care</p>
+          <p>
+            Universal Diagnosis History provides a secure platform for patients to manage their medical records, including diagnosis history, medications, and notes. This centralized system allows healthcare providers to access a patient's complete medical background for improved diagnosis and treatment plans.
+          </p>
+          <a href="#benefits" class="btn btn-primary mt-3">Learn More</a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="container benefits mt-5" id="benefits">
+      <h2 class="text-center mb-4">Benefits for Patients and Doctors</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Patient Benefits</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Easily access and manage diagnoses.</li>
+                <li class="list-group-item">Eliminate paper records.</li>
+                <li class="list-group-item">Share information securely with providers.</li>
+                <li class="list-group-item">Gain a better understanding of your health.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Doctor Benefits</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Holistic view of patient history.</li>
+                <li class="list-group-item">More informed diagnoses and treatment.</li>
+                <li class="list-group-item">Improved care coordination and communication.</li>
+                <li class="list-group-item">Reduce redundant testing and paperwork.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="container cta mt-5 text-center">
+      <h2 class="mb-4">Take Control of Your Health History</h2>
+      <a href="/register" class="btn btn-primary">Sign Up</a>
+      <a href="/about" class="btn btn-outline-primary ms-3">Learn About us!</a>
+    </section>
+  
+    <footer class="container mt-5">
+      </footer>
+  
+  </body>
+{% endblock body %}
+

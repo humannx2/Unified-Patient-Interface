@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+    <body class="text-center">
+        <h3>Your Account details</h3>
+        <div>
+            <table class="table  table-sm table-hover table-bordered border-secondary table-striped">
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                </tr>
+                <tr>
+                    <td>{{current_user.username}}</td>
+                    <td>{{current_user.name}}</td>
+                    <td>{{current_user.user_type}}</td>
+                </tr>
+        </div>
+    </body>
+{% endblock body %}

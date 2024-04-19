@@ -1,0 +1,15 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<script 
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+</script> 
+</head> 
+<body ng-app="" ng-init="firstName='Aak'; lastName='Riti'"> 
+<input type="text" ng-model="firstName"> 
+<input type="text" ng-model="lastName"> 
+<button ng-click="displayFullName()">Display Full Name</button> 
+
+<h2>{{ firstName + ' ' + lastName }}</h2> 
+</body> 
+</html>

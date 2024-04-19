@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block body %}
+    <style>
+        body{
+        background: rgb(192,192,192);
+        /* background: linear-gradient(to right, #4b79a1, #283e51); */
+        font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+
+
+    <div>
+        <h3>Dashboard</h3>
+    </div>
+
+    <body class="text-center">
+        <div>
+            <h4>Account details</h4>
+            <table class="table  table-sm table-hover table-bordered border-secondary table-striped">
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                </tr>
+                <tr>
+                    <td>{{current_user.username}}</td>
+                    <td>{{current_user.name}}</td>
+                    <td>{{current_user.user_type}}</td>
+                </tr>
+            </table>
+        </div>
+            <!-- Reports table -->
+        <div class="table-responsive" style="font-family: 'Times New Roman', Times, serif; ">
+            {% if reports %}
+            <h4>Reports</h4>
+                <table class="table table-sm table-hover table-bordered border-secondary table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Reports</th>
+                        <th>Download</th>
+                    </tr>
+                    {% for report in reports %}
+                    {% if report.report_file!=None %}
+                        <tr>
+                            <td>{{ report.id }}</td>
+                            <td>{{ report.report_file }}</td>
+                            <td><a href="{{ url_for('download_report', file_id=report.id) }}">Click Here</a></td>
+                        </tr>
+                    {% else %}
+                        <p style="color:blue;">
+                            {{'No Reports Uploaded'}}
+                        </p>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+            <!-- Diagnosis Part -->
+        <div class="table-responsive" style="font-family: 'Times New Roman', Times, serif;">
+            {% if diagnoses %}
+                <h4>Diagnoses</h4>
+                <!-- <h4>Diagnoses</h4> -->
+                <!-- Iterates through all the diagnoses -->
+                    <table class="table table-sm table-striped table-hover border-secondary table-bordered">
+                        <tr>
+                            <th>Doc_Id</th>
+                            <th>Diagnoses</th>
+                        </tr>
+                        {% for diagnosis in diagnoses %} 
+                            <tr>
+                                <td>{{ diagnosis.doctor_id }}</td>
+                                <td>{{ diagnosis.diagnosis_text }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>    
+            {% endif %}
+        </div>
+        <!-- Upload Section -->
+        <div>
+            <h4>New Reports!</h4>
+            <form action="/patdash" method="POST" enctype="multipart/form-data">
+                <label for="myfile" class="mx-2 my-2">Select Reports</label>
+                <input class="form-control" type="file" id="myFile" name="filename" accept="image/*, video/*">
+                <!-- <input type="submit" value="Upload"> -->
+                <br>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm mx-2 my-3" onclick="">Upload</button>
+                </div>
+            </form>
+                    <!--Code to display flash messages
+        {% with messages = get_flashed_messages(with_categories=true) %} gets all the messages form the server-->
+        {% if messages %} <!--if msgs exists then loops over each msg-->
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+            {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        </div>
+    </body>
+{% endblock body %}

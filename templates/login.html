@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %} - Login{% endblock title %}
+{% block body %} 
+    <style>
+        *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        }
+        
+        body{
+        background: rgb(192,192,192);
+        /* background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+        font-family: 'Times New Roman', Times, serif;
+        }
+
+        form{
+        border-radius: 20px;
+        margin-top: 150px !important;
+        width: 24% !important;
+        background-color: white !important;
+        padding: 50px
+        }
+
+        .btn-primary{
+        width: 100%;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(75,14,154,1) 35%, rgba(0,212,255,1) 100%);
+        }
+
+        h4{
+        font-size: 2rem !important;
+        font-weight: 700;
+        }
+
+        .form-control{
+        color: rgba(0,0,0,.87);
+        border-bottom-color: rgba(0,0,0,.42);
+        box-shadow: none !important;
+        border: none;
+        border-bottom: 1px solid;
+        border-radius: 4px 4px 0 0;
+        }
+
+    </style>
+
+    <div class="container-fluid">
+            <form class="mx-auto" action="/login" method="POST">
+                <h4 class="text text-center"> Login</h4>
+                <div class="mb-1 mt-1">
+                    <label for="email" class="form-label"> Email </label> 
+                    <!--To use label tag the id is much needed, the label for should contain the id of the element to be labelled-->
+                    <input type="email" class="form-control" name="useremail" id="email" required placeholder="name@example.com"> 
+                </div>
+                <div class="mb-3">
+                    <label for="pass" class="form-label"> Password </label>
+                    <input  type="password" class="form-control" name="userpass" id="pass" required placeholder="Password">
+                    <button type="submit" class='btn btn-outline-primary mt-5'>Login</button>
+                </div>
+
+                <div>
+                    <a href="{{ url_for('register')}}"> Don't have an account yet?</a>
+                </div>
+                <!--Code to display flash messages-->
+                {% with messages = get_flashed_messages(with_categories=true) %} <!--gets all the messages form the server-->
+                {% if messages %} <!--if msgs exists then loops over each msg-->
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </form>
+    </div>
+{% endblock body %}

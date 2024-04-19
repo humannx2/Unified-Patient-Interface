@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %} - About{% endblock title %}
+{% block body %} 
+    <style>
+        body{
+        background: rgb(192,192,192);
+        /* background: linear-gradient(to right, #4b79a1, #283e51); */
+        font-family: 'Times New Roman', Times, serif;
+        }
+        #list .list-group-item {
+        background: rgb(192,192,192);
+        color: black; /* Set text color to white for better visibility */
+        }
+    </style>
+    <section class="container mt-5">
+        <div class="row align-items-center">
+        <div class="col-md-6 order-md-2">
+            <img src="static/logo.png" alt="About Us Illustration" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6 order-md-1">
+            <h2>About Unified Health Record</h2>
+            <p>Unified Health Record (UHR) is a secure and patient-centric platform that empowers individuals to manage their medical history effectively. We believe that patients should have easy access to their diagnosis history, medications, and other health data.</p>
+            <p>UHR provides a centralized system for storing and sharing medical records, fostering better communication and collaboration between patients and healthcare providers. This streamlined approach improves the overall care coordination process, leading to more informed diagnoses and effective treatment plans.</p>
+            <ul id="list" class="list-group list-group-flush mt-3">
+            <li class="list-group-item">Enhanced patient engagement in healthcare decisions.</li>
+            <li class="list-group-item">Reduced redundancy in medical testing and paperwork.</li>
+            <li class="list-group-item">Improved care coordination and communication among providers.</li>
+            <li class="list-group-item">Empowered patients with a holistic view of their health history.</li>
+            </ul>
+        </div>
+        </div>
+    </section>
+
+    <section class="container mt-5 text-center">
+        <h2>Our Mission</h2>
+        <p>UHR is committed to revolutionizing healthcare by providing a secure and user-friendly platform for managing medical records. We aim to empower patients, streamline care coordination, and ultimately, improve health outcomes for all.</p>
+    </section>
+
+    <section class="container mt-5">
+        <h2>The Team</h2>
+        <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+            <!-- <img src="images/team-member-1.jpg" class="card-img-top" alt="Team Member 1"> -->
+            <div class="card-body">
+                <h5 class="card-title">Aditya Vaish</h5>
+                <!-- <p class="card-text">Brief bio about team member 1.</p> -->
+            </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+            <!-- <img src="images/team-member-2.jpg" class="card-img-top" alt="Team Member 2"> -->
+            <div class="card-body">
+                <h5 class="card-title">Barnadeep Sihi</h5>
+                <!-- <p class="card-text">Brief bio about team member 2.</p> -->
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock body %}

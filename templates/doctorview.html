@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block body %}
+    <style>
+        body{
+        background: rgb(192,192,192);
+        /* background: linear-gradient(to right, #4b79a1, #283e51); */
+        font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+
+    <body class="text-center">
+        
+        <div>
+            <h4>Dashboard</h4>
+            <form action="/docdash" method="POST">
+                <input type="text" name="email" placeholder="Search Patient">
+                <button type="submit" class="btn btn-outline-primary btn-sm mx-2 my-3">Search</button>
+            </form>
+        </div>
+        <br>
+        <div class="table-responsive" style="font-family: 'Times New Roman', Times, serif;">
+            <h4>Reports</h4>
+            <table class="table table-sm table-striped table-hover border-secondary table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Files</th>
+                    <th>Download</th>
+                </tr>
+                {% if reports %}
+                {% for report in reports %}
+                    {% if report.report_file!=None %}
+                        <tr>
+                            <td>{{ report.id }}</td>
+                            <td>{{ report.report_file }}</td>
+                            <td><a href="{{ url_for('download_report', file_id=report.id) }}">Download</a></td>
+                        </tr>
+                    {% else %}
+                        <p style="color: yellowgreen;">
+                            {{'No Reports are uploaded by the Patient'}}
+                        </p>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+        <br>
+
+        <!-- Diagnosis Part -->
+        <div class="table-responsive" style="font-family: 'Times New Roman', Times, serif;">
+            <h4>Diagnoses</h4>
+            <table class="table table-sm table-striped table-hover border-secondary table-bordered">
+                <tr>
+                    <th>Doc_Id</th>
+                    <th>Diagnoses</th>
+                </tr>
+                {% if diagnoses %}
+                {% for diagnosis in diagnoses %} 
+                <tr>
+                    <td>{{ diagnosis.doctor_id }}</td>
+                    <td>{{ diagnosis.diagnosis_text }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+
+        <!-- New Diagnosis -->
+        <br>
+        {% if reports %}
+            <div class="table-responsive" style="font-family: 'Times New Roman', Times, serif;">
+                <h5>Enter Diagnosis notes</h5>
+                <form action="/diagnosis" method="POST">
+                    <div class="mb-3"> 
+                        <input type="hidden" name="patient_id" value="{{ pat_id }}">
+                        <textarea name="diagnosis_text" placeholder="Notes"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-primary btn-sm mx-2 my-1">Add Diagnosis</button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        
+        <div>
+            <!--Code to display flash messages-->
+            {% with messages = get_flashed_messages(with_categories=true) %} <!--gets all the messages form the server-->
+            {% if messages %} <!--if msgs exists then loops over each msg-->
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </body>
+    
+{% endblock body %}
